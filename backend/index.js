@@ -1,3 +1,4 @@
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -15,3 +16,8 @@ connection();
 
 const port = process.env.PORT || 5000;
 app.listen(port,()=> console.log("Uygulama http://localhost:5000 portunda ayağa kalktı!"));
+console.log("merhaba");
+
+setInterval(() => {
+  console.log("Uygulama çalışıyor...");
+}, 3000);
