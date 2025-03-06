@@ -12,7 +12,7 @@
                           class="form-control"
                           type="email"
                           name="email"
-                          id="email"
+                          id="email" #email [appValid]="email.validity.valid"
                           required>
                       <div class="invalid-feedback">
                           Geçerli bir mail adresi girin!
@@ -24,7 +24,7 @@
                         class="form-control"
                         type="password"
                         name="password"
-                        id="password"
+                        id="password" #password [appValid]="password.validity.valid"
                         required>
                         <div class="invalid-feedback">
                           Şifre alanı boş olamaz!
