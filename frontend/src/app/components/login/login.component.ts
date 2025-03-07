@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SharedModule } from '../../common/shared/shared.module';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +11,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-
-  login(form:NgForm){
+  constructor(private _toastr: ToastrService) {
   }
+  login(form: NgForm) {}
 }
-
