@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { GenericHttpService } from '../../../services/generic-http.service';
+import { GenericHttpService } from '../../../../../services/generic-http.service';
 import { LoginModel } from '../models/login.model';
-import { LoginResponseModel } from '../models/login-response.model';
+import { LoginResponseModel } from '../components/login/models/login-response.model';
 
 @Injectable({
   providedIn: 'root'

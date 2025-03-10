@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../../common/shared/shared.module';
+import { SharedModule } from '../../../../common/shared/shared.module';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
