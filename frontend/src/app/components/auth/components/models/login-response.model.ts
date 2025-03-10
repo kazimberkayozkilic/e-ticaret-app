@@ -1,4 +1,5 @@
-import { UserModel } from "./models/user.model";
+import { UserModel } from "./user.model";
+
 
 export class LoginResponseModel{
     token: string = "";

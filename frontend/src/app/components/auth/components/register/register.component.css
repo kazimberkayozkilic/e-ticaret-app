@@ -1,3 +1,4 @@
+/* Sayfa Ortalaması */
 .register-container {
   display: flex;
   justify-content: center;
@@ -6,7 +7,7 @@
   background-color: #f8f9fa;
 }
 
-
+/* Kayıt Form Kartı */
 .register-card {
   width: 350px;
   background: white;
@@ -15,8 +16,9 @@
   overflow: hidden;
 }
 
+/* Başlık Alanı */
 .register-header {
-  background-color: #007bff;
+  background-color: #007bff; /* Mavi renk */
   color: white;
   text-align: center;
   padding: 20px;
@@ -28,18 +30,14 @@
   font-weight: bold;
 }
 
+/* İçerik Alanı */
 .register-body {
   padding: 20px;
 }
 
+/* Form Elemanları */
 .form-group {
   margin-bottom: 15px;
-}
-
-.form-label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  display: block;
 }
 
 .form-control {
@@ -50,6 +48,7 @@
   font-size: 1rem;
 }
 
+/* Buton */
 .btn-primary {
   width: 100%;
   padding: 10px;
@@ -68,6 +67,7 @@
   cursor: not-allowed;
 }
 
+/* Giriş Yap Linki */
 .text-center a {
   color: #007bff;
   font-weight: bold;

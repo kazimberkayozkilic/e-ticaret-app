@@ -4,14 +4,15 @@
       <h2>Kayıt Sayfası</h2>
     </div>
     <div class="register-body">
-      <form autocomplete="off" #registerForm="ngForm">
+      <form autocomplete="off" #registerForm="ngForm" (ngSubmit)="register(registerForm)">
 
-        
+        <!-- Ad Soyad Alanı -->
         <div class="form-group">
           <label for="name">Ad Soyad</label>
           <input
             type="text"
             class="form-control"
+            [(ngModel)]="model.name"
             name="name"
             id="name"
             #name
@@ -24,12 +25,13 @@
           </div>
         </div>
 
-
+        <!-- Mail Adresi Alanı -->
         <div class="form-group mt-2">
           <label for="email">Mail Adresi</label>
           <input
             type="email"
             class="form-control"
+            [(ngModel)]="model.email"
             name="email"
             id="email"
             #email
@@ -40,12 +42,13 @@
           <div class="invalid-feedback">Geçerli bir mail adresi yazın!</div>
         </div>
 
-
+        <!-- Şifre Alanı -->
         <div class="form-group mt-2">
           <label for="password">Şifre</label>
           <input
             type="password"
             class="form-control"
+            [(ngModel)]="model.password"
             name="password"
             id="password"
             #password
@@ -55,6 +58,7 @@
           <div class="invalid-feedback">Şifre alanı boş olamaz!</div>
         </div>
 
+        <!-- Kayıt Butonu ve Giriş Yap Linki -->
         <div class="form-group mt-3">
           <button [disabled]="!registerForm.valid" class="btn btn-primary w-100">Kayıt Ol</button>
           <div class="text-center mt-3">
