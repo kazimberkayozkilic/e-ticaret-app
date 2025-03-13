@@ -24,4 +24,9 @@ export class CategoryService {
     this._http.post<MessageResponseModel>("categories/update",model, res=> callBack(res));
   }
 
+  removeById(_id: string, callBack: (res:MessageResponseModel)=> void){
+    let model = {_id: _id};
+    this._http.post<MessageResponseModel>("categories/removeById",model, res=> callBack(res));
+  }
+
 }
