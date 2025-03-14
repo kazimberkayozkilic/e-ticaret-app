@@ -22,6 +22,7 @@
     <td>
       <button
         class="btn btn-outline-warning btn-sm"
+        (click)="get(category)"
         data-bs-toggle="modal"
         data-bs-target="#updateModal"
       >
@@ -108,13 +109,18 @@
           aria-label="Close"
         ></button>
       </div>
-      <form autocomplete="off" #updateForm="ngForm">
+      <form
+        autocomplete="off"
+        #updateForm="ngForm"
+        (ngSubmit)="update(updateForm)"
+      >
         <div class="modal-body">
           <div class="form-group">
             <label for="updateName">Kategori Adı</label>
             <input
               type="text"
               class="form-control"
+              [(ngModel)]="updateCategory.name"
               name="updateName"
               id="updateName"
               #updateName
