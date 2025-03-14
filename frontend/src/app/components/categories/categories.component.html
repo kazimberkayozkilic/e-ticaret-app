@@ -28,7 +28,10 @@
       >
         <i class="fa fa-edit"></i>
       </button>
-      <button class="btn btn-outline-danger btn-sm mx-1">
+      <button
+        (click)="removeById(category)"
+        class="btn btn-outline-danger btn-sm mx-1"
+      >
         <i class="fa fa-trash"></i>
       </button>
     </td>

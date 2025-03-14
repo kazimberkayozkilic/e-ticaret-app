@@ -4,6 +4,7 @@ import { CategoryModel } from './models/category.model';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from './services/category.service';
 import { NgForm } from '@angular/forms';
+import { SwalService } from '../../services/swal.service';
 
 @Component({
   selector: 'app-categories',
@@ -18,7 +19,8 @@ export class CategoriesComponent {
 
   constructor(
     private _toastr: ToastrService,
-    private _category: CategoryService
+    private _category: CategoryService,
+    private _swal: SwalService
   ) {}
 
   ngOnInit(): void {
@@ -54,5 +56,14 @@ export class CategoriesComponent {
         element?.click();
       });
     }
+  }
+
+  removeById(model: CategoryModel){
+    this._swal.callSwal(`${model.name} kategorisini silmek istiyor musunuz`,"","Sil",()=>{
+      this._category.removeById(model._id,res=>{
+        this._toastr.info(res.message);
+        this.getAll();
+      })
+    });
   }
 }
