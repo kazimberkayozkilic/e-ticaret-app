@@ -79,7 +79,19 @@ router.post("/", async(req, res)=> {
 
         res.json(model);
     });
-})
+});
+
+router.post("/changeActiveStatus", async(req, res)=> {
+    response(res, async()=> {
+        const {_id} = req.body;
+        let product = await Product.findById(_id);
+        product.isActive = !product.isActive;
+        var result = await Product.findByIdAndUpdate(_id, product);
+        console.log(result);
+        res.json({message: "Ürünün durumu başarıyla değiştirildi!"});
+    });
+});
+
 
 
 module.exports = router;
