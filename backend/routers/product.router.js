@@ -92,6 +92,14 @@ router.post("/changeActiveStatus", async(req, res)=> {
     });
 });
 
+router.post("/getById", async(req, res)=> {
+    response(res, async()=>{
+        const {_id}= req.body;
+        let product = await Product.findById(_id);
+        res.json(product);
+    });
+});
+
 
 
 module.exports = router;
