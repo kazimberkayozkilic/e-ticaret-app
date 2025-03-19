@@ -9,9 +9,12 @@ app.use(cors());
 
 const authRouter = require("./routers/auth.router");
 const categoryRouter = require("./routers/category.router");
+const productRouter = require("./routers/product.router");
 
 app.use("/api/auth", authRouter);
 app.use("/api/categories",categoryRouter);
+app.use("/api/products", productRouter);
+
 
 connection();
 
