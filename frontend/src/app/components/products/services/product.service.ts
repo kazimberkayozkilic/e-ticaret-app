@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GenericHttpService } from '../../../services/generic-http.service';
 import { MessageResponseModel } from '../../../common/models/message.response.model';
+import { ProductModel } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,9 @@ export class ProductService {
 
   changeActiveStatus(model: any, callBack: (res: MessageResponseModel)=> void){
     this._http.post<MessageResponseModel>("products/changeActiveStatus", model, res=> callBack(res));
+  }
+
+  getById(model: any, callBack: (res: ProductModel)=> void){
+    this._http.post<ProductModel>("products/getById", model, res=> callBack(res));
   }
 }
