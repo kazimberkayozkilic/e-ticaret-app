@@ -13,4 +13,7 @@ export class ProductService {
     this._http.post<MessageResponseModel>("products/add", model, res=> callBack(res));
   }
 
+  update(model: FormData, callBack: (res: MessageResponseModel)=> void){
+    this._http.post<MessageResponseModel>("products/update", model, res=> callBack(res));
+  }
 }
