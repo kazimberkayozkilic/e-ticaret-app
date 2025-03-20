@@ -20,4 +20,8 @@ export class ProductService {
   removeById(model: any, callBack: (res: MessageResponseModel)=> void){
     this._http.post<MessageResponseModel>("products/removeById", model, res=> callBack(res));
   }
+
+  changeActiveStatus(model: any, callBack: (res: MessageResponseModel)=> void){
+    this._http.post<MessageResponseModel>("products/changeActiveStatus", model, res=> callBack(res));
+  }
 }
