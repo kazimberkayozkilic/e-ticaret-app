@@ -16,4 +16,8 @@ export class ProductService {
   update(model: FormData, callBack: (res: MessageResponseModel)=> void){
     this._http.post<MessageResponseModel>("products/update", model, res=> callBack(res));
   }
+
+  removeById(model: any, callBack: (res: MessageResponseModel)=> void){
+    this._http.post<MessageResponseModel>("products/removeById", model, res=> callBack(res));
+  }
 }
