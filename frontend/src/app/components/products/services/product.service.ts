@@ -3,6 +3,7 @@ import { GenericHttpService } from '../../../services/generic-http.service';
 import { MessageResponseModel } from '../../../common/models/message.response.model';
 import { ProductModel } from '../models/product.model';
 import { RequestModel } from '../../../common/models/request.model';
+import { PaginationResultModel } from '../../../common/models/pagenation-result.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,9 @@ export class ProductService {
 
   getAllForHomePage(model: RequestModel, callBack: (res: ProductModel[])=> void){
     this._http.post<ProductModel[]>("products/getAllForHomePage", model, res=> callBack(res));
+  }
+
+  getAll(model: RequestModel, callBack: (res: PaginationResultModel<ProductModel[]>)=> void){
+    this._http.post<PaginationResultModel<ProductModel[]>>("products/", model, res=> callBack(res));
   }
 }
