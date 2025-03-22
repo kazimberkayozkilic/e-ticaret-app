@@ -5,7 +5,7 @@
           <i class="fa fa-plus"></i>
       </button>
       <div class="col-md-3" style="float: right;">
-      <input class="form-control" type="search" placeholder="Aranacak değeri yazın..."/>
+      <input class="form-control" type="search" [(ngModel)]="request.search" placeholder="Aranacak değeri yazın..." (keyup)="search()" (search)="getAll(1)"/>
   </div>
   </div>
   <!-- Ekleme ve Search -->
@@ -21,34 +21,35 @@
   "Oluştulma Tarihi",
   "Aktif/Pasif",
   "İşlemler"]'>
-  <tr>
-      <td></td>
+  <tr *ngFor="let product of result.datas let index = index">
+      <td>{{index + 1}}</td>
       <td>
-          <img  width="50"/>
+          <img [src]="'http://localhost:5000/' + product.imageUrls[0].path" width="50"/>
       </td>
-      <td></td>
+      <td>{{product.name}}</td>
       <td>
           <ul>
-              <li >
-
+              <li *ngFor="let category of product.categories">
+                  {{category.name}}
               </li>
           </ul>
       </td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>{{product.stock}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.createdDate | date: 'dd.MM.yyyy HH:mm:sss'}}</td>
       <td>
           <button
             class="btn"
-            >
-
+            [ngClass]="product.isActive ? 'btn-danger': 'btn-primary'"
+            (click)="changeProductStatuc(product._id)">
+              {{product.isActive?'Pastif Yap': 'Aktif Yap'}}
           </button>
       </td>
       <td>
-          <button class="btn btn-outline-warning btn-sm" title="Güncelle">
+          <button routerLink="/products/update/{{product._id}}" class="btn btn-outline-warning btn-sm" title="Güncelle">
               <i class="fa fa-edit"></i>
           </button>
-          <button  class="btn btn-outline-danger btn-sm mx-1" title="Sil">
+          <button (click)="removeById(product._id)" class="btn btn-outline-danger btn-sm mx-1" title="Sil">
               <i class="fa fa-trash"></i>
           </button>
       </td>
@@ -57,7 +58,7 @@
   <!-- Liste -->
 
   <!-- Pagination -->
-  <select name="pageSize" id="pageSize" class="form-control text-center"  style="width: 65px; float: left;">
+  <select name="pageSize" id="pageSize" class="form-control text-center" [(ngModel)]="request.pageSize" style="width: 65px; float: left;">
       <option>5</option>
       <option>10</option>
       <option>20</option>
@@ -69,20 +70,20 @@
   </select>
   <nav style="float: right;">
       <ul class="pagination">
-          <li class="page-item">
-              <a class="page-link">İlk</a>
+          <li class="page-item" [ngClass]="result.isFirstPage ? 'disabled' : ''">
+              <a class="page-link" (click)="getAll(1)">İlk</a>
           </li>
-          <li class="page-item">
-              <a class="page-link">Önceki</a>
+          <li class="page-item" [ngClass]="result.isFirstPage ? 'disabled' : ''">
+              <a class="page-link" (click)="getAll(request.pageNumber - 1)">Önceki</a>
           </li>
-          <li class="page-item">
-              <a class="page-link" ></a>
+          <li class="page-item" *ngFor="let p of pageNumbers">
+              <a class="page-link" [ngClass]="result.pageNumber == p? 'active': ''" (click)="getAll(p)">{{p}}</a>
           </li>
-          <li class="page-item" >
-              <a class="page-link">Sonraki</a>
+          <li class="page-item" [ngClass]="result.isLastPage ? 'disabled' : ''">
+              <a class="page-link" (click)="getAll(request.pageNumber - 1)">Sonraki</a>
           </li>
-          <li class="page-item" >
-              <a class="page-link" >Son</a>
+          <li class="page-item" [ngClass]="result.isLastPage ? 'disabled' : ''">
+              <a class="page-link" (click)="getAll(result.totalPageCount)">Son</a>
           </li>
       </ul>
   </nav>
