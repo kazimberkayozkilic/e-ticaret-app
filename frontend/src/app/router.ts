@@ -30,6 +30,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'products',
+        loadComponent: () =>
+          import('./components/products/components/product/product.component').then(
+            (c) => c.ProductComponent
+          ),
+      },
+      {
         path: 'categories',
         loadComponent: () =>
           import('./components/categories/categories.component').then(
