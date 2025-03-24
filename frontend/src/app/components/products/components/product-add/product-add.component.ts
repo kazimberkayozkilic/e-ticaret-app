@@ -62,4 +62,10 @@ export class ProductAddComponent implements OnInit {
       });
     }
   }
+  
+  removeImage(name: string, size: number, index: number) {
+    this.imageUrls.splice(index, 1);
+    let i = this.images.findIndex(p => p.name == name && p.size == size);
+    this.images.splice(i, 1);
+  }
 }
