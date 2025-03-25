@@ -62,10 +62,33 @@ export class ProductAddComponent implements OnInit {
       });
     }
   }
-  
+
   removeImage(name: string, size: number, index: number) {
     this.imageUrls.splice(index, 1);
     let i = this.images.findIndex(p => p.name == name && p.size == size);
     this.images.splice(i, 1);
+  }
+
+  addImage(imageUrl: string, file: any) {
+    this.imageUrls.push(
+      { imageUrl: imageUrl, name: file.name, size: file.size }
+    );
+  }
+
+  getImages(event: any) {
+    const file: File[] = Array.from(event.target.files);
+    this.images.push(...file);
+
+    for (let i = 0; i < event.target.files.length; i++) {
+      const element = event.target.files[i];
+
+      const reader = new FileReader();
+      reader.readAsDataURL(element);
+
+      reader.onload = () => {
+        const imageUrl = reader.result as string;
+        this.addImage(imageUrl, file);
+      }
+    }
   }
 }
