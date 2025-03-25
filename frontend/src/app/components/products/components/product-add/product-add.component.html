@@ -1,7 +1,7 @@
 <app-blank title="Ürün Ekleme" sectionTitle="Ürün Ekleme">
   <div class="row center">
       <div class="col-md-6">
-          <form #addForm="ngForm" autocomplete="off">
+          <form #addForm="ngForm" autocomplete="off" (ngSubmit)="add(addForm)">
               <div class="form-group">
                   <label for="name">Ürün Adı</label>
                   <input
@@ -27,8 +27,8 @@
                   ngModel
                   multiple
                   #categoriesSelect>
-                  <option >
-
+                  <option *ngFor="let category of categories" [value]="category._id">
+                      {{category.name}}
                   </option>
                   </select>
               </div>
@@ -72,13 +72,14 @@
                     id="images"
                     ngModel
                     multiple
-                    class="form-control">
+                    class="form-control"
+                    (change)="getImages($event)">
               </div>
               <hr>
               <div class="form-group mt-2">
                   <p>Seçilen Resimler</p>
-                  <span >
-                      <img width="100" class="mx-1">
+                  <span (click)="removeImage(image.name, image.size, i)" *ngFor="let image of imageUrls let i = index">
+                      <img [src]="image.imageUrl" width="100" class="mx-1">
                   </span>
               </div>
               <div class="form-group mt-2">
