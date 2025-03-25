@@ -27,7 +27,7 @@ export class ProductComponent  implements OnInit {
 
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.getAll();
   }
 
   getAll(pageNumber = 1) {
