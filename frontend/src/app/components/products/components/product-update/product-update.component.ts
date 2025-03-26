@@ -52,4 +52,15 @@ export class ProductUpdateComponent {
       { imageUrl: imageUrl, name: file.name, size: file.size }
     );
   }
+
+  deleteImage(_id: string, index: number) {
+    let model = {
+      _id: _id,
+      index: index
+    }
+    this._product.removeImageByProductIdAndIndex(model, res=>{
+      this._toastr.warning(res.message);
+      this.getById();
+    })
+  }
 }
