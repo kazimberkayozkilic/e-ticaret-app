@@ -27,7 +27,12 @@ export class ProductUpdateComponent {
     private _product: ProductService,
     private _router: Router,
     private _activated: ActivatedRoute
-  ) {}
+  ) {
+    this._activated.params.subscribe(res=>{
+      this.productId = res["value"];
+      this.getById();
+    })
+  }
 
   ngOnInit(): void {
     this.getCategories();
@@ -35,5 +40,10 @@ export class ProductUpdateComponent {
 
   getCategories() {
     this._category.getAll(res => this.categories = res);
+  }
+
+  getById(){
+    let model = {_id: this.productId};
+    this._product.getById(model, res=> this.product = res);
   }
 }
