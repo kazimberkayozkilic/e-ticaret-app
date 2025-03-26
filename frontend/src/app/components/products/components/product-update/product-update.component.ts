@@ -46,4 +46,10 @@ export class ProductUpdateComponent {
     let model = {_id: this.productId};
     this._product.getById(model, res=> this.product = res);
   }
+
+  addImage(imageUrl: string, file: any) {
+    this.imageUrls.push(
+      { imageUrl: imageUrl, name: file.name, size: file.size }
+    );
+  }
 }
