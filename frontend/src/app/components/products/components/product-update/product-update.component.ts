@@ -6,6 +6,7 @@ import { CategoryService } from '../../../categories/services/category.service';
 import { ToastrService } from 'ngx-toastr';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-product-update',
@@ -78,6 +79,36 @@ export class ProductUpdateComponent {
         const imageUrl = reader.result as string;
         this.addImage(imageUrl, file);
       }
+    }
+  }
+
+  update(form: NgForm) {
+    if (form.value["categoriesSelect"].length == 0) {
+      this._toastr.error("Kategori seçimi yapmadınız!");
+      return;
+    }
+    if (form.valid) {
+      let product = form.value;
+      let categories: string[] = product["categoriesSelect"];
+      let price = product["price"];
+      price = price.toString().replace(",",".");
+      let formData = new FormData();
+      formData.append("_id", this.product._id);
+      formData.append("name", this.product.name);
+      formData.append("price", price);
+      formData.append("stock", product["stock"]);
+      for(const category of categories){
+        formData.append("categories", category);
+      }
+      if(this.images != undefined){
+        for(const image of this.images){
+          formData.append("images",image, image.name);
+        }
+      }
+      this._product.update(formData, res=>{
+        this._toastr.info(res.message);
+        this._router.navigateByUrl("/products");
+      });
     }
   }
 }
