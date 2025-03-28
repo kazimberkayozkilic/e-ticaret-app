@@ -1,14 +1,14 @@
 <app-blank title="Ürün Güncelleme" sectionTitle="Ürün Güncelleme">
   <div class="row center">
       <div class="col-md-6">
-          <form #updateForm="ngForm" autocomplete="off">
+          <form #updateForm="ngForm" autocomplete="off" (ngSubmit)="update(updateForm)">
               <div class="form-group">
                   <label for="name">Ürün Adı</label>
                   <input
                     type="text"
                     name="name"
                     id="name"
-
+                    [(ngModel)]="product.name"
                     required
                     #name
                     minlength="3"
@@ -24,11 +24,11 @@
                   class="form-control"
                   name="categoriesSelect"
                   id="categoriesSelect"
-
+                  [(ngModel)]="product.categories"
                   multiple
                   #categoriesSelect>
-                  <option >
-
+                  <option *ngFor="let category of categories" [value]="category._id">
+                      {{category.name}}
                   </option>
                   </select>
               </div>
@@ -38,7 +38,7 @@
                     type="number"
                     name="stock"
                     id="stock"
-
+                    [(ngModel)]="product.stock"
                     required
                     #stock
                     min="1"
@@ -54,7 +54,7 @@
                     type="number"
                     name="price"
                     id="price"
-
+                    [(ngModel)]="product.price"
                     required
                     #price
                     min="1"
@@ -73,13 +73,13 @@
                     ngModel
                     multiple
                     class="form-control"
-                    >
+                    (change)="getImages($event)">
               </div>
               <hr>
               <div class="form-group mt-2">
                   <p>Mevcut Resimler</p>
-                  <span>
-                      <img width="100" class="mx-1">
+                  <span (click)="deleteImage(product._id, i)" *ngFor="let image of product.imageUrls let i = index">
+                      <img [src]="'http://localhost:5000/' + image.path" width="100" class="mx-1">
                   </span>
               </div>
               <div class="form-group mt-2">
