@@ -1,1 +1,53 @@
-<p>home works!</p>
+<app-blank title="Ana Sayfa" sectionTitle="Ürünler">
+  <div class="row">
+    <div class="col-md-3 cerceve">
+      <ul>
+        <li>Tümü</li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-7">
+            <label>Arama</label>
+            <input
+              type="search"
+              class="form-control"
+              placeholder="Aranacak değeri yazın..."
+            />
+          </div>
+          <div class="col-md-3">
+            <label>Fiyat Sıralaması</label>
+            <select class="form-control">
+              <option value="0">Seçim yapınız...</option>
+              <option value="1">Artan Fiyat</option>
+              <option value="-1">Azalayan Fiyat</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label>İşlemler</label><br />
+            <button class="btn btn-primary">Getir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-md-4">
+          <div class="card text-center">
+            <div class="card-header">
+              <h1></h1>
+            </div>
+            <div class="card-body">
+              <img alt="" width="200" height="160" />
+              <p><strong>Kalan Adet:</strong></p>
+              <hr />
+              <h4 class="alert alert-danger">Adet Fiyatı:</h4>
+              <button class="btn btn-outline-success w-100">Sepete Ekle</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-blank>
