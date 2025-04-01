@@ -27,9 +27,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAll();
+    this.getCategories();
   }
 
   getAll(){
     this._product.getAllForHomePage(this.request, res=> this.products = res);
+  }
+
+  getCategories() {
+    this._category.getAll(res => this.categories = res);
   }
 }
