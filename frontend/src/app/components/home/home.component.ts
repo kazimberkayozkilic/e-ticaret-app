@@ -6,6 +6,8 @@ import { CategoryModel } from '../categories/models/category.model';
 import { CategoryService } from '../categories/services/category.service';
 import { ProductService } from '../products/services/product.service';
 import { ToastrService } from 'ngx-toastr';
+import { BasketService } from '../baskets/services/basket.service';
+import { BasketModel } from '../baskets/models/basket.model';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +24,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private _category: CategoryService,
     private _product: ProductService,
-    private _toastr: ToastrService
+    private _toastr: ToastrService,
+    private _basket: BasketService
   ) { }
 
   ngOnInit(): void {
@@ -42,5 +45,16 @@ export class HomeComponent implements OnInit {
     this.request.categoryName = categoryName;
     this.request.categoryId = categoryId;
     this.getAll();
+  }
+
+  addBasket(productId: string, price: number){
+    let model = new BasketModel();
+    model.productId = productId;
+    model.price = price;
+    model.quantity = 1;
+    this._basket.add(model, res=> {
+      this._toastr.success(res.message);
+      this.getAll();
+    });
   }
 }
