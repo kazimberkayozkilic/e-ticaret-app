@@ -25,3 +25,19 @@ router.post("/add", async (req, res)=>{
         res.json({message: "Ürün başarıyla sepete eklendi!"});
     });
 });
+
+router.post("/removeById", async(req, res)=> {
+    response(res, async()=>{
+        const {_id} = req.body;
+
+        let basket = await Basket.findById(_id);
+
+        let product = await Product.findById(basket.productId);
+        product.stock += basket.quantity;
+        await Product.findByIdAndUpdate(basket.productId, product);
+
+        await Basket.findByIdAndRemove(_id);   
+        
+        res.json({message: "Ürünü sepetten başarıyla kaldırdık!"});
+    });
+});
