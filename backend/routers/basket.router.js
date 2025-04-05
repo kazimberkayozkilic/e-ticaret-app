@@ -41,3 +41,25 @@ router.post("/removeById", async(req, res)=> {
         res.json({message: "Ürünü sepetten başarıyla kaldırdık!"});
     });
 });
+
+router.post("/", async(req, res)=> {
+    response(res, async()=>{
+        const {userId} = req.body;
+
+        const baskets = await Basket.aggregate([
+            {
+                $match: {userId: userId}
+            },
+            {
+                $lookup: {
+                    from: "products",
+                    localField: "productId",
+                    foreignField: "_id",
+                    as: "products"
+                }
+            }
+        ]);
+
+        res.json(baskets);
+    });
+});
