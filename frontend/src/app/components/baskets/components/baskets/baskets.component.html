@@ -1,1 +1,38 @@
-<p>baskets works!</p>
+<app-blank title="Sepetim" sectionTitle="Sepetteki Ürünler">
+  <div class="row">
+      <div class="col-md-9">
+          <app-table [heads]='[
+  "#",
+  "Ürün Resmi",
+  "Ürün Adı",
+  "Adet",
+  "Birim Fiyatı",
+  "Toplam Tutar",
+  "İşlemler"]'>
+  <tr>
+      <td></td>
+      <td>
+          <img />
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+          <button class="btn btn-outline-danger btn-sm mx-1" title="Sil">
+              <i class="fa fa-trash"></i>
+          </button>
+      </td>
+  </tr>
+  </app-table>
+      </div>
+      <div class="col-md-3" style="border: 1px solid #ccc; padding: 10px;">
+          <h3 class="alert alert-danger">
+
+          </h3>
+          <button class="btn btn-danger w-100">
+              Ödeme Yap
+          </button>
+      </div>
+  </div>
+</app-blank>
