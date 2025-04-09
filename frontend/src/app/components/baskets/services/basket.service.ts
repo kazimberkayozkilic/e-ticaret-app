@@ -34,4 +34,12 @@ export class BasketService {
       callBack(res);
     });
   }
+
+  removeById(model:any, callBack: (res: MessageResponseModel)=> void){
+    this._http.post<MessageResponseModel>("baskets/removeById",model, res=> {
+      this.getCount();
+      callBack(res);
+    });
+  }
 }
+
