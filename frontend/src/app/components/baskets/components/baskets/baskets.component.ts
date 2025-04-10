@@ -32,6 +32,13 @@ getAll(){
   });
 }
 
+calculate(){
+  this.sum = 0;
+  this.baskets.forEach(element=> {
+    this.sum += (element.price * element.quantity)
+  });
+}
+
 removeById(_id: string){
   this._swal.callSwal("Ürünü sepetten silmek istiyor musunuz?","Ürünü Sil","Sil",()=>{
     let model = {_id: _id};
@@ -41,4 +48,5 @@ removeById(_id: string){
     });
   })
 }
+
 }
