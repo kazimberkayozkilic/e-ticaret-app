@@ -32,4 +32,13 @@ getAll(){
   });
 }
 
+removeById(_id: string){
+  this._swal.callSwal("Ürünü sepetten silmek istiyor musunuz?","Ürünü Sil","Sil",()=>{
+    let model = {_id: _id};
+    this._basket.removeById(model, res=> {
+      this._toastr.info(res.message);
+      this.getAll();
+    });
+  })
+}
 }
